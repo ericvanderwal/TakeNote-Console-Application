@@ -1,7 +1,13 @@
-﻿namespace TakeNote.Commands
+﻿using System;
+
+namespace TakeNote.Commands
 {
-    public class ExitCommands
+    public class ExitCommand : ICommand
     {
-        
+        public bool Execute()
+        {
+            Console.WriteLine("Exiting program");
+            return true;
+        }
     }
 }

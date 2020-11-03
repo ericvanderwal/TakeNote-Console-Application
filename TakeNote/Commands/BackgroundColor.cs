@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace TakeNote.Commands
 {
-    public class ColorCommand : ICommand
+    public class BackgroundColor : ICommand
     {
         private readonly string color;
 
-        public ColorCommand(string color)
+        public BackgroundColor(string color)
         {
             this.color = string.IsNullOrWhiteSpace(color) ? null : color;
         }

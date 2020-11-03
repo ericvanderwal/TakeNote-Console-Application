@@ -1,7 +1,13 @@
-﻿namespace TakeNote.Commands
+﻿using System;
+
+namespace TakeNote.Commands
 {
-    public class ResetColorCommand
+    public class ResetColorCommand : ICommand
     {
-        
+        public bool Execute()
+        {
+            Console.ResetColor();
+            return false;
+        }
     }
 }
