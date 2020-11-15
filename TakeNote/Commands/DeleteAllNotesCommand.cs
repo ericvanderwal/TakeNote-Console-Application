@@ -1,6 +1,4 @@
-﻿using System;
-using TakeNote.Work;
-using TakeNote.Work.CSV;
+﻿using TakeNote.Actions;
 
 namespace TakeNote.Commands
 {

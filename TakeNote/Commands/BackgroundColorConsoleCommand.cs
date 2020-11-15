@@ -1,6 +1,4 @@
-﻿using TakeNote.Work.Actions;
-
-namespace TakeNote.Commands
+﻿namespace TakeNote.Commands
 {
     public class BackgroundColorConsoleCommand : ICommand
     {

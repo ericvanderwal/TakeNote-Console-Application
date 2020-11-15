@@ -1,19 +1,19 @@
 ﻿using System;
 
-namespace TakeNote.Work.Actions
+namespace TakeNote
 {
     public class ColorActions
     {
         public void ResetColor()
         {
-            Console.ResetColor();
+            System.Console.ResetColor();
         }
 
         public void SetColor(string color, bool isForeground)
         {
             if (color == null)
             {
-                Console.WriteLine("No color has been entered");
+                System.Console.WriteLine("No color has been entered");
             }
 
             else
@@ -22,21 +22,21 @@ namespace TakeNote.Work.Actions
 
                 if (!Enum.TryParse(color, true, out consoleColor))
                 {
-                    Console.WriteLine("You have entered incorrect color name");
+                    System.Console.WriteLine("You have entered incorrect color name");
                 }
                 else
                 {
                     if (isForeground)
                     {
-                        Console.ForegroundColor = consoleColor;
+                        System.Console.ForegroundColor = consoleColor;
                     }
                     else
                     {
-                        Console.BackgroundColor = consoleColor;
+                        System.Console.BackgroundColor = consoleColor;
                     }
 
-                    Console.Clear();
-                    Console.WriteLine("Color Changed");
+                    System.Console.Clear();
+                    System.Console.WriteLine("Color Changed");
                 }
             }
         }

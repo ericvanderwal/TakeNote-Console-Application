@@ -1,27 +1,30 @@
 ﻿using System;
+using TakeNote.Actions;
 
 namespace TakeNote.Commands
 {
     public class DeleteNoteCommand : ICommand
     {
-        private string sNumber;
-
-        public DeleteNoteCommand(string number)
-        {
-            sNumber = number;
-        }
-
-        public bool Execute()
+        public DeleteNoteCommand(string sNumber)
         {
             if (Int32.TryParse(sNumber, out int number))
             {
-                //todo logic of deleting from DB
+                DeleteActions deleteActions = new DeleteActions();
+                bool found = deleteActions.DeleteSingleNote(number);
+
+                if (!found)
+                {
+                    Console.WriteLine("Not found in database");
+                }
             }
             else
             {
                 Console.WriteLine("Number not recognized");
             }
+        }
 
+        public bool Execute()
+        {
             return false;
         }
     }

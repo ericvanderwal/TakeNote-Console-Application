@@ -6,7 +6,7 @@ namespace TakeNote
     {
         public void Run()
         {
-            Notes.Instance.Run();
+            Notes.Instance.Init();
         }
     }
 }

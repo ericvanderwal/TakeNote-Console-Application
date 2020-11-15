@@ -1,5 +1,6 @@
 ﻿using System;
-using TakeNote.Work.CSV;
+using TakeNote.Actions;
+using TakeNote.Work;
 
 namespace TakeNote.Commands
 {
@@ -11,7 +12,13 @@ namespace TakeNote.Commands
         {
             completeNote = string.IsNullOrWhiteSpace(s) ? "None" : s;
             WriteActions writeActions = new WriteActions();
-            writeActions.WriteSingleNote(s);
+            NoteModel noteModel = new NoteModel()
+            {
+                Note = s,
+                Date = DateTime.Now,
+            };
+
+            writeActions.Write(noteModel);
         }
 
         public bool Execute()
