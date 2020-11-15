@@ -17,17 +17,18 @@ namespace TakeNote
             switch (commandName)
             {
                 // Create command based on CommandName (and maybe arguments)
-                case "EXIT": return new ExitCommand();
-                case "*": return new NoteCommand(arg);
-                case "BACKGROUND": return new BackgroundColor(arg);
-                case "TEXT": return new ForegroundColor(arg);
+                case "EXIT": return new ExitConsoleCommand();
+                case "*": return new NewNoteCommand(arg);
+                case "BACKGROUND": return new BackgroundColorConsoleCommand(arg);
+                case "TEXT": return new ForegroundColorConsoleCommand(arg);
                 case "HELP": return new HelpCommand();
-                case "CLEAR": return new ClearCommand();
+                case "CLEAR": return new ClearConsoleCommand();
                 case "RESET": return new ResetColorCommand();
-                case "DELETE": return new DeleteCommand(arg);
-                case "DELETEALL": return new DeleteAllCommand();
-                case "DAY": return new DayCommand(arg);
-                case "SHOW": return new ShowCommand();
+                case "DELETE": return new DeleteNoteCommand(arg);
+                case "DELETEALL": return new DeleteAllNotesCommand(arg);
+                case "DAY": return new ShowDayCommand(arg);
+                case "SHOW": return new ShowAllCommand();
+                case "NEW": return new WriteNewCommand();
 
                 default: return null;
             }

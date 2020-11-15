@@ -1,4 +1,5 @@
 ﻿using System;
+using TakeNote.Work.Actions;
 
 namespace TakeNote.Commands
 {
@@ -6,7 +7,8 @@ namespace TakeNote.Commands
     {
         public bool Execute()
         {
-            Console.ResetColor();
+            ColorActions colorActions = new ColorActions();
+            colorActions.ResetColor();
             return false;
         }
     }

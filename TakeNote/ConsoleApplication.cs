@@ -2,14 +2,17 @@
 
 namespace TakeNote
 {
-    public class ConsoleApplication
+    public static class ConsoleApplication
     {
-        public void Run()
+        public static void Run()
         {
             Console.Title = "Take Note";
             AsciiArt.Display();
             Console.WriteLine("Enter command <help to display help>: ");
             string value = null;
+
+            Initiate initiate = new Initiate();
+            initiate.Run();
 
             var exit = false;
             while (exit == false)

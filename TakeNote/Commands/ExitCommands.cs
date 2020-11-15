@@ -2,7 +2,7 @@
 
 namespace TakeNote.Commands
 {
-    public class ExitCommand : ICommand
+    public class ExitConsoleCommand : ICommand
     {
         public bool Execute()
         {

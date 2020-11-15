@@ -2,11 +2,11 @@
 
 namespace TakeNote.Commands
 {
-    public class DayCommand : ICommand
+    public class ShowDayCommand : ICommand
     {
         private string sNumber;
 
-        public DayCommand(string number)
+        public ShowDayCommand(string number)
         {
             sNumber = number;
         }

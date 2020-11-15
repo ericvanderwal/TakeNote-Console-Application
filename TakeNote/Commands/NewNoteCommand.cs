@@ -1,14 +1,17 @@
 ﻿using System;
+using TakeNote.Work.CSV;
 
 namespace TakeNote.Commands
 {
-    public class NoteCommand : ICommand
+    public class NewNoteCommand : ICommand
     {
         private readonly string completeNote;
 
-        public NoteCommand(string s)
+        public NewNoteCommand(string s)
         {
-            completeNote = string.IsNullOrWhiteSpace(s) ? null : s;
+            completeNote = string.IsNullOrWhiteSpace(s) ? "None" : s;
+            WriteActions writeActions = new WriteActions();
+            writeActions.WriteSingleNote(s);
         }
 
         public bool Execute()

@@ -2,11 +2,11 @@
 
 namespace TakeNote.Commands
 {
-    public class DeleteCommand : ICommand
+    public class DeleteNoteCommand : ICommand
     {
         private string sNumber;
 
-        public DeleteCommand(string number)
+        public DeleteNoteCommand(string number)
         {
             sNumber = number;
         }

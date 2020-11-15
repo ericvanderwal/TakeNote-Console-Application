@@ -1,24 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace TakeNote.Commands
+namespace TakeNote.Work.Actions
 {
-    public class BackgroundColor : ICommand
+    public class ColorActions
     {
-        private readonly string color;
-
-        public BackgroundColor(string color)
+        public void ResetColor()
         {
-            this.color = string.IsNullOrWhiteSpace(color) ? null : color;
+            Console.ResetColor();
         }
 
-        public bool Execute()
-        {
-            CheckColor();
-            return false;
-        }
-
-        private void CheckColor()
+        public void SetColor(string color, bool isForeground)
         {
             if (color == null)
             {
@@ -29,13 +20,21 @@ namespace TakeNote.Commands
             {
                 ConsoleColor consoleColor;
 
-                if (!Enum.TryParse(this.color, true, out consoleColor))
+                if (!Enum.TryParse(color, true, out consoleColor))
                 {
                     Console.WriteLine("You have entered incorrect color name");
                 }
                 else
                 {
-                    Console.BackgroundColor = consoleColor;
+                    if (isForeground)
+                    {
+                        Console.ForegroundColor = consoleColor;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = consoleColor;
+                    }
+
                     Console.Clear();
                     Console.WriteLine("Color Changed");
                 }

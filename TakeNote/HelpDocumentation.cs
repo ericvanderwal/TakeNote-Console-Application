@@ -9,7 +9,7 @@
         HELP        displays this help page
         *           followed by the note body will create and save a new note.
         DELETE      followed by a number deletes the associated note.
-        DELETEALL   deletes all notes saved in the database. Use with caution.
+        DELETEALL   followed by 'true', deletes all notes saved in the database.
         CLEAR       clears all notes from the console screen.
         EXIT        closes the console application
 

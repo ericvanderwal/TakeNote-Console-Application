@@ -2,7 +2,7 @@
 
 namespace TakeNote.Commands
 {
-    public class ClearCommand : ICommand
+    public class ClearConsoleCommand : ICommand
     {
         public bool Execute()
         {
