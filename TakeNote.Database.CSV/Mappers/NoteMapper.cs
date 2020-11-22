@@ -1,4 +1,6 @@
 ﻿using CsvHelper.Configuration;
+using NoteWork.Database.CSV;
+using TakeNote.Model;
 
 namespace TakeNote.Work
 {
@@ -6,10 +8,8 @@ namespace TakeNote.Work
     {
         public NoteMapper()
         {
-            Map(m => m.Count).Name(Constants.CsvHeaders.Count).Index(0);
             Map(m => m.Note).Name(Constants.CsvHeaders.Note).Index(2);
             Map(m => m.Date).Name(Constants.CsvHeaders.Date).Index(1);
-            Map(m => m.Complete).Name(Constants.CsvHeaders.Complete).Index(3);
         }
     }
 }

@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using CsvHelper;
-using TakeNote.Console;
+using TakeNote.Model;
 using TakeNote.Work.Services;
 
 namespace TakeNote.Work
 {
     public class Notes
     {
-        private List<NoteModel> NoteList;
+        private List<NoteModel> _noteMaster;
+
+        private List<NoteModel> _displayList;
 
         private static readonly Lazy<Notes> instance =
             new Lazy<Notes>(() => new Notes());
 
-        private WriteActions _write;
-        private ReadActions _read;
         private CsvParserServiceService _csvParser;
 
         public static Notes Instance
@@ -24,58 +23,84 @@ namespace TakeNote.Work
 
         private Notes()
         {
-            if (!CheckPathExists.PathExists(Constants.Paths.path)) return;
             _csvParser = new CsvParserServiceService();
-            NoteList = _csvParser.ReadCsvFileToNoteModel(Constants.Paths.path);
-        }
-
-        public void WriteAllNotes(NoteModel noteModel)
-        {
-            // save entire list
-            NoteList.Add(noteModel);
-            FileFolderGenerator.EvaluatePath(Constants.Paths.path);
-            _csvParser.WriteNewCsvFile(Constants.Paths.path, NoteList);
+            _noteMaster = _csvParser.ReadCsvFileToNoteModel() ?? new List<NoteModel>();
         }
 
         public void WriteSingleNote(NoteModel noteModel)
         {
-            NoteList.Add(noteModel);
-            FileFolderGenerator.EvaluatePath(Constants.Paths.path);
-            _csvParser.WriteNewCsvFile(Constants.Paths.path, NoteList);
+            //add note to master
+            _noteMaster.Add(noteModel);
+            _csvParser.AddCsvRecord(noteModel);
         }
 
-        public List<NoteModel> ReadNotes()
+        public List<NoteModel> ReadNotesAll()
         {
+            _displayList = _noteMaster;
+
             // load if no note list
-            if (NoteList == null || NoteList.Count == 0)
+            if (_displayList == null || _displayList.Count == 0)
             {
                 return null;
             }
 
-            return NoteList;
+            return _displayList;
         }
 
+        /// <summary>
+        /// Return true if success
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
         public bool DeleteNote(int number)
         {
-            if (NoteList == null || NoteList.Count < number)
+            if (_displayList == null || _displayList.Count < number)
             {
                 return false;
             }
 
-            NoteList.RemoveAt(number - 1);
-            FileFolderGenerator.EvaluatePath(Constants.Paths.path);
-            _csvParser.WriteNewCsvFile(Constants.Paths.path, NoteList);
+            //take deleted note out from master and display
+            NoteModel foundNote = _displayList[number - 1];
+            _displayList.Remove(foundNote);
+            _noteMaster.Remove(foundNote);
+
+            // resave master list
+            _csvParser.WriteNewCsvFile(_noteMaster);
             return true;
         }
 
         public void DeleteAllNotes()
         {
-            _csvParser.DeleteAllCSV(Constants.Paths.path);
+            _displayList = new List<NoteModel>();
+            _noteMaster = new List<NoteModel>();
+            _csvParser.DeleteAllCSV();
         }
 
         public void Init()
         {
-            throw new NotImplementedException();
+        }
+
+        public List<NoteModel> ReadNotesDay(in DateTime dateTime)
+        {
+            _displayList = new List<NoteModel>();
+
+            foreach (var note in _noteMaster)
+            {
+                if (note.Date.Day == dateTime.Date.Day
+                    && note.Date.Month == dateTime.Month
+                    && note.Date.Year == dateTime.Year)
+                {
+                    _displayList.Add(note);
+                }
+            }
+
+            return _displayList;
+        }
+
+        public bool Export(string path)
+        {
+            bool success = _csvParser.ExportCSV(path, _noteMaster);
+            return success;
         }
     }
 }

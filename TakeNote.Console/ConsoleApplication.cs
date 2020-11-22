@@ -6,9 +6,9 @@ namespace TakeNote
     {
         public static void Run()
         {
-            Console.Title = "Take Note";
+            Console.Title = "Take Note Console Application";
             AsciiArt.Display();
-            Console.WriteLine("Enter command <help to display help>: ");
+            Console.WriteLine("Enter command <HELP to display help>: ");
             string value = null;
 
             Initiate initiate = new Initiate();

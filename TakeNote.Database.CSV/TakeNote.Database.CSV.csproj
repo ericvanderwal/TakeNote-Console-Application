@@ -2,11 +2,15 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>NoteWork.Database.CSV</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TakeNote.Database.CSV\TakeNote.Database.CSV.csproj" />
       <ProjectReference Include="..\TakeNote.Model\TakeNote.Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="CsvHelper" Version="16.0.0" />
     </ItemGroup>
 
 </Project>

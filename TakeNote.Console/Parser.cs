@@ -28,7 +28,7 @@ namespace TakeNote
                 case "DELETEALL": return new DeleteAllNotesCommand(arg);
                 case "DAY": return new ShowDayCommand(arg);
                 case "SHOW": return new ShowAllCommand();
-                case "SAMPLE": return new SampleCommand();
+                case "EXPORT": return new Export(arg);
 
                 default: return null;
             }

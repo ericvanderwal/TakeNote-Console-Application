@@ -17,13 +17,8 @@ namespace TakeNote.Commands
 
             else
             {
-                for (var index = 0; index < notes.Count; index++)
-                {
-                    var note = notes[index];
-                    Console.WriteLine(
-                        index + " : " + note.Date + " : " + note.Note
-                    );
-                }
+                GenerateDisplay generateDisplay = new GenerateDisplay();
+                generateDisplay.Show(notes);
             }
         }
 

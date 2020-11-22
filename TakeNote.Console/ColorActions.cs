@@ -7,6 +7,7 @@ namespace TakeNote
         public void ResetColor()
         {
             System.Console.ResetColor();
+            System.Console.Clear();
         }
 
         public void SetColor(string color, bool isForeground)
@@ -22,7 +23,11 @@ namespace TakeNote
 
                 if (!Enum.TryParse(color, true, out consoleColor))
                 {
-                    System.Console.WriteLine("You have entered incorrect color name");
+                    System.Console.WriteLine("You have entered invalid color name");
+                    Console.WriteLine (@"Valid Colors:
+                                       Black, Blue, Cyan, DarkBlue, DarkCyan, DarkGray, DarkGreen, " +
+                                      "DarkMagenta, DarkRed, DarkYellow, Gray, Green, Magenta, " +
+                                      "Red, White, Yellow");
                 }
                 else
                 {
@@ -36,7 +41,6 @@ namespace TakeNote
                     }
 
                     System.Console.Clear();
-                    System.Console.WriteLine("Color Changed");
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace TakeNote.Work
+namespace NoteWork.Database.CSV.Helpers
 {
     public static class FileFolderGenerator
     {

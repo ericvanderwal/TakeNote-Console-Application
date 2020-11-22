@@ -1,6 +1,6 @@
 ﻿using System;
 using TakeNote.Actions;
-using TakeNote.Work;
+using TakeNote.Model;
 
 namespace TakeNote.Commands
 {
@@ -12,13 +12,7 @@ namespace TakeNote.Commands
         {
             completeNote = string.IsNullOrWhiteSpace(s) ? "None" : s;
             WriteActions writeActions = new WriteActions();
-            NoteModel noteModel = new NoteModel()
-            {
-                Note = s,
-                Date = DateTime.Now,
-            };
-
-            writeActions.Write(noteModel);
+            writeActions.Write(s);
         }
 
         public bool Execute()
